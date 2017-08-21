@@ -4,7 +4,7 @@
  *
  * @author Fact Maven
  * @link https://www.factmaven.com/api/avatar
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 # Headers
@@ -15,7 +15,7 @@ ini_set( "user_agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537
 # Special properties
 $link = ( isset($_SERVER['HTTPS'] ) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $meta = [
-    "version" => "1.1.0",
+    "version" => "1.2.0",
     "copyright" => "Copyright 2011-" . date("Y") . " Fact Maven Corp.",
     "link" => "https://www.factmaven.com/",
     "authors" => [
@@ -32,7 +32,7 @@ if ( count( $_GET ) ) {
 
     $gravatar = @file_get_contents( "https://gravatar.com/" . $hash . ".json" );
     if ( $gravatar === FALSE ) {
-        $gravatar = "";
+        $gravatar = FALSE;
     }
     else {
         $gravatar = json_decode( $gravatar );
@@ -43,17 +43,15 @@ if ( count( $_GET ) ) {
         "@link" => $link,
         "email" => $email,
         "hash" => $hash,
-        "@source" => [
+        "@sources" => [
             "gravatar" => [
-                "avatar" => [
-                    "url" => "https://gravatar.com/avatar/" . $hash . "s=80&d=mm",
-                    "jpg" => "https://gravatar.com/avatar/" . $hash . ".jpg",
-                    "png" => "https://gravatar.com/avatar/" . $hash . ".png",
-                ],
+                "avatar" => "https://gravatar.com/avatar/" . $hash,
                 "api" => $gravatar,
             ],
+            "robohash" => [
+                "avatar" => "https://robohash.org/" . $hash . ".png",
+            ],
         ],
-        "meta" => $meta,
     ];
 }
 else {
