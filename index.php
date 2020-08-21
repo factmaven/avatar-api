@@ -14,14 +14,6 @@ ini_set("user_agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 
 # Special properties
 $link = (isset($_SERVER['HTTPS'])?"https":"http")."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$meta = [
-    "version" => "1.2.0",
-    "copyright" => "Copyright 2011-".date("Y")." Fact Maven",
-    "link" => "https://factmaven.com/",
-    "authors" => [
-    "Ethan O'Sullivan",
-    ]
-];
 
 if (count($_GET)) {
     # Convert email into MD5 hash
@@ -59,7 +51,14 @@ if (count($_GET)) {
             "title" => "Missing Parameter",
             "detail" => "Please start with adding '?email=name@example.com' at the end.",
         ],
-        "meta" => $meta,
+        "meta" => [
+            "version" => "1.2.0",
+            "copyright" => "Copyright 2011-".date("Y")." Fact Maven",
+            "link" => "https://factmaven.com/",
+            "authors" => [
+                "Ethan O'Sullivan",
+            ]
+        ],
     ];
 }
 # Output JSON
