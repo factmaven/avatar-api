@@ -8,34 +8,33 @@
  */
 
 # Headers
-header( "Access-Control-Allow-Origin: *" );
-header( "Content-Type: application/json" );
-ini_set( "user_agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36" );
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+ini_set("user_agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
 
 # Special properties
-$link = ( isset($_SERVER['HTTPS'] ) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$link = (isset($_SERVER['HTTPS'])?"https":"http")."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $meta = [
     "version" => "1.2.0",
-    "copyright" => "Copyright 2011-" . date("Y") . " Fact Maven",
+    "copyright" => "Copyright 2011-".date("Y")." Fact Maven",
     "link" => "https://factmaven.com/",
     "authors" => [
     "Ethan O'Sullivan",
     ]
 ];
 
-if ( count( $_GET ) ) {
+if (count($_GET)) {
     # Convert email into MD5 hash
-    if ( isset( $_GET['email'] ) ) {
+    if (isset($_GET['email'])) {
         $email = $_GET['email'];
-        $hash = md5( strtolower( $email ) );
+        $hash = md5(strtolower($email));
     }
 
-    $gravatar = @file_get_contents( "https://gravatar.com/" . $hash . ".json" );
-    if ( $gravatar === FALSE ) {
+    $gravatar = @file_get_contents("https://gravatar.com/".$hash.".json");
+    if ($gravatar === FALSE) {
         $gravatar = FALSE;
-    }
-    else {
-        $gravatar = json_decode( $gravatar );
+    } else {
+        $gravatar = json_decode($gravatar);
     }
 
     # Structure API
@@ -45,16 +44,15 @@ if ( count( $_GET ) ) {
         "hash" => $hash,
         "@sources" => [
             "gravatar" => [
-                "avatar" => "https://gravatar.com/avatar/" . $hash,
+                "avatar" => "https://gravatar.com/avatar/".$hash,
                 "api" => $gravatar,
             ],
             "robohash" => [
-                "avatar" => "https://robohash.org/" . $hash . ".png",
+                "avatar" => "https://robohash.org/".$hash.".png",
             ],
         ],
     ];
-}
-else {
+} else {
     $api = [
         "errors" => [
             "id" => "404",
@@ -65,4 +63,4 @@ else {
     ];
 }
 # Output JSON
-print_r( json_encode( array_filter( $api ) ) );
+print_r(json_encode(array_filter($api)));
