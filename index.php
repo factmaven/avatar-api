@@ -3,7 +3,7 @@
  * Avatar API
  *
  * @author Fact Maven
- * @link https://www.factmaven.com/api/avatar
+ * @link https://api.factmaven.com/avatar
  * @version 1.2.0
  */
 
@@ -16,10 +16,10 @@ ini_set( "user_agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537
 $link = ( isset($_SERVER['HTTPS'] ) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $meta = [
     "version" => "1.2.0",
-    "copyright" => "Copyright 2011-" . date("Y") . " Fact Maven Corp.",
-    "link" => "https://www.factmaven.com/",
+    "copyright" => "Copyright 2011-" . date("Y") . " Fact Maven",
+    "link" => "https://factmaven.com/",
     "authors" => [
-    "Ethan Jinks O'Sullivan",
+    "Ethan O'Sullivan",
     ]
 ];
 
