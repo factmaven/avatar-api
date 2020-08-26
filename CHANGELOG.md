@@ -1,4 +1,9 @@
 ## Changelog
+## 1.2.1
+*2020-08-26*
+* Minor changes to code layout
+* Added additional RoboHash avatars
+
 ## 1.2.0
 *2017-08-20*
 * Fixed typo in Gravatar parameter

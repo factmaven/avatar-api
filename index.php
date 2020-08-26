@@ -4,7 +4,7 @@
  *
  * @author Fact Maven
  * @link https://api.factmaven.com/avatar
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 # Headers
@@ -41,6 +41,13 @@ if (count($_GET)) {
             ],
             "robohash" => [
                 "avatar" => "https://robohash.org/".$hash.".png",
+                "links" => [
+                    "https://robohash.org/".$hash.".png?gravatar=hashed",
+                    "https://robohash.org/".$hash.".png?set=set2",
+                    "https://robohash.org/".$hash.".png?set=set3",
+                    "https://robohash.org/".$hash.".png?set=set4",
+                    "https://robohash.org/".$hash.".png?set=set5",
+                ],
             ],
         ],
     ];
@@ -52,7 +59,7 @@ if (count($_GET)) {
             "detail" => "Please start with adding '?email=name@example.com' at the end.",
         ],
         "meta" => [
-            "version" => "1.2.0",
+            "version" => "1.2.1",
             "copyright" => "Copyright 2011-".date("Y")." Fact Maven",
             "link" => "https://factmaven.com/",
             "authors" => [
